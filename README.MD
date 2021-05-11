@@ -12,6 +12,6 @@
     - extract the jdk into the root directory
     - place the lavalink.jar inside jdk-16/bin directory
 3. from the config folder, copy the application.yml into the jdk-16/bin directory
-4. switch into jdk-16/bin directory and run command `java -jar laralink.jar`
+4. switch into jdk-16/bin directory and run command `java -jar lavalink.jar`
 5. change .env.dev to .env
 6. while in root directory run command `python main.py` to run the bot
