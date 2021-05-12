@@ -2,6 +2,7 @@
 token.0
 jdk-16/
 .env
+*.jar
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
