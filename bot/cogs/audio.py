@@ -276,6 +276,18 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             return self.wavelink.get_player(obj.guild.id, cls=Player, context=obj)
         elif isinstance(obj, discord.Guild):
             return self.wavelink.get_player(obj.id, cls=Player)
+          
+          
+    ####################################################
+    #
+    # Bot Commands and error handeling 
+
+    # Format of writting commands
+    # @commands.command -> tells us that this is a command
+    # @commandName_command.error -> error handeling 
+    # name=... -> the name of the command we will use to signal the bot
+    # help=... -> write a more detailed help description
+    # aliases=[...] -> a different name given to the command
 
     @commands.command(name="connect", aliases=["join"])
     async def connect_command(self, ctx, *, channel: t.Optional[discord.VoiceChannel]):
