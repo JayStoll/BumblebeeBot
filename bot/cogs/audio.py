@@ -427,6 +427,9 @@ class Audio(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(exc, QueueIsEmpty):
             await ctx.send("The queue is currently empty.")
 
+    @commands.command(name="load")
+    async def load_command(self, ctx, show: t.Optional[int]):
+        await ctx.send("Load is not yet implemented")
 
 def setup(bot):
     bot.add_cog(Audio(bot))
