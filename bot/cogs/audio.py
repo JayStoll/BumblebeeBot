@@ -1,4 +1,4 @@
-  
+
 import asyncio
 import datetime as dt
 import random
@@ -113,15 +113,6 @@ class Queue:
 
         return self._queue[self.position]
 
-    def shuffle(self):
-        if not self._queue:
-            raise QueueIsEmpty
-
-        upcoming = self.upcoming
-        random.shuffle(upcoming)
-        self._queue = self._queue[:self.position + 1]
-        self._queue.extend(upcoming)
-
     def set_repeat_mode(self, mode):
         if mode == "none":
             self.repeat_mode = RepeatMode.NONE
@@ -222,7 +213,7 @@ class Player(wavelink.Player):
         await self.play(self.queue.current_track)
 
 
-class Music(commands.Cog, wavelink.WavelinkMixin):
+class Audio(commands.Cog, wavelink.WavelinkMixin):
     def __init__(self, bot):
         self.bot = bot
         self.wavelink = wavelink.Client(bot=bot)
@@ -264,7 +255,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "rest_uri": "http://127.0.0.1:2333",
                 "password": "youshallnotpass",
                 "identifier": "MAIN",
-                "region": "europe",
+                "region": "canada",
             }
         }
 
@@ -393,17 +384,6 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoPreviousTracks):
             await ctx.send("There are no previous tracks in the queue.")
 
-    @commands.command(name="shuffle")
-    async def shuffle_command(self, ctx):
-        player = self.get_player(ctx)
-        player.queue.shuffle()
-        await ctx.send("Queue shuffled.")
-
-    @shuffle_command.error
-    async def shuffle_command_error(self, ctx, exc):
-        if isinstance(exc, QueueIsEmpty):
-            await ctx.send("The queue could not be shuffled as it is currently empty.")
-
     @commands.command(name="repeat")
     async def repeat_command(self, ctx, mode: str):
         if mode not in ("none", "1", "all"):
@@ -449,4 +429,4 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
 
 def setup(bot):
-    bot.add_cog(Music(bot))
+    bot.add_cog(Audio(bot))
