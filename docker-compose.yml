@@ -7,9 +7,8 @@ services:
             dockerfile: Dockerfile
         ports:
             - 2333
+        network_mode: "bridge"
     discord-service:
         build:
             context: .
             dockerfile: local.Dockerfile
-        depends_on: 
-            - lavalink-service

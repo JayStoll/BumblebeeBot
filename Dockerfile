@@ -1,4 +1,5 @@
-FROM openjdk:11
-COPY . /usr/src/app
-WORKDIR /usr/src/app
-ENTRYPOINT ["java", "-jar", "lavalink.jar"]
+FROM openjdk:13
+WORKDIR /usr/src/lavalink
+COPY Lavalink.jar /usr/src/lavalink/Lavalink.jar
+COPY application.yml /usr/src/lavalink/application.yml
+CMD ["java", "-jar", "./Lavalink.jar"]
