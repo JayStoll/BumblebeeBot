@@ -1,14 +1,16 @@
 version: '3'
 
 services:
-    lavalink-service:
-        build: 
-            context: .
-            dockerfile: Dockerfile
-        ports:
-            - 2333
-        network_mode: "bridge"
-    discord-service:
-        build:
-            context: .
-            dockerfile: local.Dockerfile
+    bot:
+      build: .
+      container_name: BumblebeeBot
+      depends_on:
+        - audio
+      restart: on-failure
+  
+    audio:
+      container_name: BumblebeeBot-audio
+      image: fredboat/lavalink:master-v3
+      restart: on-failure
+      volumes: 
+        - ./config/application.yml:/opt/Lavalink/application.yml:ro
